@@ -1,0 +1,11 @@
+db.sqlite3
+eshop_venv
+store/migrations
+
+# Byte-compiled / optimized / DLL files
+store/__pycache__/*
+Eshop/__pycache__/*
+__pycache__/
+*__pycache*
+*__pycache*
+**/__pycache__
