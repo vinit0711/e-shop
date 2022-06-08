@@ -2,6 +2,8 @@ db.sqlite3
 eshop_venv
 store/migrations
 
+product_images
+
 # Byte-compiled / optimized / DLL files
 store/__pycache__/*
 Eshop/__pycache__/*
