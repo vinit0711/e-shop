@@ -12,14 +12,15 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('cart', views.cart, name='cart'),
     path('check-out', views.checkout, name='checkout'),
-    path('orders', views.orders, name='orders'),
+    path('orders/', views.orders, name='orders'),
     path('productpage/<int:pk>', views.productpage, name='productpage'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
-# student/<int:pk>/
 
 htmxpattern = [
     path('check-email', views.check_email, name='check-email'),
+    path('add_product_to_cart/', views.add_product_to_cart,
+         name='add_product_to_cart')
 ]
 
 urlpatterns += htmxpattern

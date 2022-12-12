@@ -1,5 +1,6 @@
 from django.shortcuts import redirect
 
+
 def auth_middleware(get_response):
     # One-time configuration and initialization.
 
@@ -7,9 +8,9 @@ def auth_middleware(get_response):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
 
-        print("This is middleware")
+        print("******This is middleware*****8")
         if not request.session.get('customer'):
-            return  redirect ("login")
+            return redirect("login")
 
         response = get_response(request)
 

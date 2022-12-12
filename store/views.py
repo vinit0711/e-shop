@@ -8,10 +8,6 @@ from django.contrib.auth.hashers import make_password, check_password
 from store.middlewares.auth import auth_middleware
 
 from .forms import CustomerForm
-# print(make_password('12345'))
-# print(check_password('12345','pbkdf2_sha256$260000$ZPS9949Ja1hjOlrxIahksC$WW8787K7i2rfSQJU53+qpfTvZE7Rl2NGmbFIkoTrkxw='))
-
-# Create your views here.
 
 
 def home(request):
@@ -130,6 +126,7 @@ def signup(request):
 
 def login(request):
     if request.method == 'GET':
+        print("login Get form")
         customer_form = CustomerForm()
         # print(customer_form)
         context = {'customer_form': customer_form}
@@ -208,6 +205,7 @@ def orders(request):
     customer = request.session.get('customer')
     orders = Order.get_orders_by_customer(customer)
     print(orders)
+    print("orders===", orders)
     return render(request, "orders.html", {'orders': orders})
 
 
@@ -233,3 +231,41 @@ def check_phone_number(request):
         return HttpResponse("<div style = 'color:red'> Phone Number is Already Registered</div>")
     # else:
     #     return HttpResponse("<div style = 'color:green'> Email is available</div>")
+
+
+def add_product_to_cart(request):
+    product = request.POST.get('product')
+    print("product===", product)
+    remove = request.POST.get('remove')
+    print("remove===", remove)
+    cart = request.session.get('cart')
+    print("cart==", cart)
+    customer = request.session.get('customer')
+    if cart:
+        quantity = cart.get(product)
+        if quantity:
+            if remove:
+                if quantity <= 1:
+                    cart.pop(product)
+                else:
+                    cart[product] = quantity-1
+            else:
+                cart[product] = quantity+1
+
+        else:
+            cart[product] = 1
+    else:  # Initially cart is empty , create cart obj and add to session
+        cart = {}
+        cart[product] = 1
+
+    request.session['cart'] = cart
+    print('cart is :', cart)
+    print(" add_product_to_cart :  ", request.session.get('email'))
+    # return redirect("homepage")
+    categoryid = request.GET.get('category')
+    if categoryid:
+        products = Product.get_all_product_by_categoryid(categoryid)
+    else:
+        products = Product.get_all_products()
+    context = {'products': products}
+    return render(request, "components/products.html", context)

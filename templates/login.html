@@ -3,7 +3,7 @@
 <div class="container">
   <div class="p-4 m-4">
     <div class="col-lg-4 mx-auto border rounded">
-      <h3 class="alert alert-light border rounded pt-4">Login Here</h3>
+      <h3 class="alert alert-light border rounded mt-4 pt-4">Login Here</h3>
       <form action="/login" method="POST">
         {%if error_message %}
         <div class="alert alert-danger" role="alert">{{error_message}}</div>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-          <label for="">password </label>
+          <label for="">Password </label>
           <input
             type="password"
             name="password"
