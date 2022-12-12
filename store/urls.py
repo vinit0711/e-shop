@@ -19,7 +19,7 @@ urlpatterns += staticfiles_urlpatterns()
 
 htmxpattern = [
     path('check-email', views.check_email, name='check-email'),
-    path('add_product_to_cart/', views.add_product_to_cart,
+    path('add_product_to_cart/<int:pk>', views.add_product_to_cart,
          name='add_product_to_cart')
 ]
 

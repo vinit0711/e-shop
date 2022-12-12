@@ -12,5 +12,4 @@ __pycache__/
 *__pycache*
 **/__pycache__
 static
-staticfiles
 .vscode

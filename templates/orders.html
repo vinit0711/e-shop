@@ -1,12 +1,13 @@
-
-    {% extends 'base.html' %}
+{% extends 'Base.html' %}
 {% block content %}
 {% load cart %}
 
 <div class="container">
-   <div class="border rounded p-4 m-4">
+    <div class="border rounded p-4 m-4">
         <p class="display-4 pl-4 ml-4">Your Orders</p>
         <hr>
+        {% if athlete_list %}
+
         <table class="table">
             <thead>
                 <tr>
@@ -20,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                
+
                 {% for order in orders %}
                 <tr>
                     <td>{{forloop.counter}}</td>
@@ -32,11 +33,14 @@
                     <td>{{order.product|price_total:request.session.cart}}</td>
                     <td>{{order.status}}</td>
                 </tr>
-
+                {% empty %}
+                Sorry, No Orders To Display.
                 {% endfor %}
-               
+
             </tbody>
+        </table>
 
-           
-
-{% endblock %}
+        {% else %}
+        <p class="text-center">Sorry No Order To Display</p>
+        {% endif %}
+        {% endblock %}

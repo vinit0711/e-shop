@@ -27,7 +27,7 @@ def home(request):
         else:
             products = Product.get_all_products()
         context = {'products': products,
-                   'categories': categories, 'customer': customer}
+                   'categories': categories, 'customer': customer, 'Vinit': 'Mayurs'}
         print(" you are in home page , user email==  :  ",
               request.session.get('email'))
         return render(request, 'Home.html', context)
@@ -233,8 +233,15 @@ def check_phone_number(request):
     #     return HttpResponse("<div style = 'color:green'> Email is available</div>")
 
 
-def add_product_to_cart(request):
-    product = request.POST.get('product')
+def cart_item_length(cart):
+    if cart:
+        return len(cart)
+    else:
+        return 0
+
+
+def add_product_to_cart(request, pk):
+    product = str(pk)
     print("product===", product)
     remove = request.POST.get('remove')
     print("remove===", remove)
@@ -267,5 +274,6 @@ def add_product_to_cart(request):
         products = Product.get_all_product_by_categoryid(categoryid)
     else:
         products = Product.get_all_products()
-    context = {'products': products}
+    cart_quantity = cart_item_length(cart)
+    context = {'products': products, 'cart_quantity': cart_quantity}
     return render(request, "components/products.html", context)
