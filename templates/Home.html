@@ -1,4 +1,4 @@
-{% extends 'Base.html' %} {% block content %} {% load cart %}
+{% extends 'base.html' %} {% block content %} {% load cart %}
 
 <div class="container mt-3">
   <div class="row">
@@ -9,10 +9,7 @@
           All Products
         </a>
         {%for category in categories%}
-        <a
-          href="/?category={{category.id}}"
-          class="list-group-item list-group-item-action"
-        >
+        <a href="/?category={{category.id}}" class="list-group-item list-group-item-action">
           {{category.name}}
         </a>
         {% endfor %}

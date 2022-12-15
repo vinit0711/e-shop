@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'fontawesomefree',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -144,3 +145,13 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Session Timeout Login
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+
+SESSION_EXPIRE_SECONDS = 1800
+
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 15  # group by minute
+SESSION_COOKIE_AGE = 1800
+SESSION_TIMEOUT_REDIRECT = '/login'

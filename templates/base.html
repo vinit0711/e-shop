@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome Icons -->
+  <!-- <link rel="stylesheet" href="{% static 'css/all.min.css' %}" /> -->
+
+  <!-- Bootstrap CSS and Then JS Pooper -->
+  <link href="{% static 'css/libraries/bootstrap.min.css' %}" rel="stylesheet" />
+
+  <title>Eshop</title>
+</head>
+
+<body>
+  <div class="container-fluid">
+    {% include 'components/navbar.html' %}
+    {% block content %}
+    {% endblock %}
+    <script src="{% static 'js/libraries/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- HTMX  -->
+    <script src="{% static 'js/libraries/htmx.min.js' %}"></script>
+    <!-- Custome javascript -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+      document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      })
+    </script>
+
+  </div>
+</body>
+
+</html>
