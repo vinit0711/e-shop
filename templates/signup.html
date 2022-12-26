@@ -1,52 +1,49 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="container">
-  <div class="p-4 m-4">
-    <div class="col-lg-4 mx-auto border rounded">
-      <h3 class="alert alert-light border rounded mt-4 pt-4">Create New Account</h3>
-      <form action="/signup" method="POST">
-        {%if error_message %}
-        <div class="alert alert-danger" role="alert">{{error_message}}</div>
-        {% endif %} {% csrf_token %}
-        <div class="form-group">
-          <label for="">First Name </label>
-          <input type="text" name="firstname" id="" value="{{first_name}}" class="form-control form-control-sm"
-            placeholder="" aria-describedby="helpId" />
-        </div>
+  <div class="col-lg-4 mx-auto border rounded p-4 m-4">
+    <h3 class="alert alert-light border rounded mt-4 pt-4">Create New Account</h3>
+    <form action="/signup" method="POST">
+      {%if error_message %}
+      <div class="alert alert-danger" role="alert">{{error_message}}</div>
+      {% endif %} {% csrf_token %}
+      <div class="form-outline mb-4">
+        <input type="text" name="firstname" value="{{first_name}}" class="form-control" placeholder=""
+          aria-describedby="helpId" />
+        <label class="form-label" for="">First Name </label>
+      </div>
 
-        <div class="form-group">
-          <label for="">Last Name </label>
-          <input type="text" name="lastname" id="" value="{{last_name}}" class="form-control form-control-sm"
-            placeholder="" aria-describedby="helpId" />
-        </div>
+      <div class="form-outline mb-4">
+        <input type="text" name="lastname" value="{{last_name}}" class="form-control" aria-describedby="helpId" />
+        <label class="form-label" for="">Last Name </label>
+      </div>
 
-        <div class="form-group">
-          <label for="">Phone Number </label>
-          <input type="text" name="phonenumber" id="" value="{{phone_number}}" class="form-control form-control-sm"
-            placeholder="" aria-describedby="helpId" />
-        </div>
+      <div class="form-outline mb-4">
+        <input type="text" name="phonenumber" value="{{phone_number}}" class="form-control" aria-describedby="helpId" />
+        <label class="form-label" for="">Phone Number </label>
+      </div>
 
-        <div class="form-group">
-          <label for="">Email </label>
-          <input type="Email" name="email" id="" value="{{email}}" class="form-control form-control-sm"
-            placeholder="example@gmail.com" aria-describedby="helpId" hx-post="/check-email" hx-trigger="keyup"
-            hx-target="#email-error" hx-swap="outerhtml" />
-          <div id="email-error"></div>
-        </div>
+      <div class="form-outline mb-4">
+        <input type="Email" name="email" value="{{email}}" class="form-control" aria-describedby="helpId"
+          hx-post="/check-email" hx-trigger="keyup" hx-target="#email-error" hx-swap="outerhtml" />
+        <label class="form-label" for="">Email </label>
 
-        <div class="form-group">
-          <label for="">Password </label>
-          <input type="password" name="password" id="" value="{{password}}" class="form-control form-control-sm"
-            placeholder="********" aria-describedby="helpId" />
-        </div>
+      </div>
+      <div id="email-error"></div>
+      <div class="form-outline mb-4">
+        <input type="password" name="password" value="{{password}}" class="form-control" aria-describedby="helpId" />
+        <label class="form-label" for="">Password </label>
+      </div>
 
-        <div class="row">
-          <div class="form-group form-control-sm col text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
+      <div class="row">
+        <div class="form-group form-control-sm col text-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-      </form>
-    </div>
+        <div>
+          <p>Already a member? <a href="/login">Login</a></p>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
 
