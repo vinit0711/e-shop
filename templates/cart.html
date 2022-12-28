@@ -41,53 +41,45 @@
         </tr>
       </tfoot>
     </table>
-    <hr>
     <div class="m-3 p-3">
-      <a href="#" data-toggle="modal" data-target="#exampleModal"
-        class="btn btn-outline-info border rounded  col-lg-3 float-right">Check out</a>
+      <a href="#" data-mdb-toggle="modal" data-mdb-target="#checkoutModal"
+        class="btn border rounded  col-lg-3 float-right">Check
+        out</a>
     </div>
   </div>
 </div>
-
-
 <!-- modal -->
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal top fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true"
+  data-mdb-backdrop="true" data-mdb-keyboard="true">
+  <div class="modal-dialog  ">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          Check Out Form
-        </h5>
-        <hr>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="checkoutModalLabel">Check Out Form</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="m-2 p-3">
-          <form action="/check-out" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-              <label for="">Address</label>
-              <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
-
-            </div>
-            <div class="form-group">
-              <label for="">Phone</label>
-              <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
-            </div>
-
-            <input type="submit" class="btn float-right btn-outline-info col-lg-6" value="Check out">
-          </form>
-        </div>
+        <form action="/check-out" method="POST">
+          {%if error_message %}
+          <div class="alert alert-danger" role="alert">{{error_message}}</div>
+          {% endif %} {% csrf_token %}
+          <div class="form-outline mb-4">
+            <input name="address" class="form-control" />
+            <label class="form-label" for="">Address</label>
+          </div>
+          <div class="form-outline mb-4">
+            <input type="text" name="phone" class="form-control" />
+            <label class="form-label" for="form2Example2">Phone</label>
+          </div>
       </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      </form>
 
     </div>
   </div>
 </div>
+
 
 
 

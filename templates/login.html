@@ -2,10 +2,10 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-5 mx-auto border rounded p-4 m-4">
+    <section id="loginContainer" class="col-lg-5 mx-auto border rounded p-4 m-4">
 
       <div class="col-lg-10 mx-auto">
-        <h3 class="alert alert-light border rounded mt-4 pt-4">Login Here</h3>
+        <h3 class="alert alert-light border rounded mt-4 pt-4 d-flex justify-content-center">Login Here</h3>
         <form action="/login" method="POST">
           {%if error_message %}
           <div class="alert alert-danger" role="alert">{{error_message}}</div>
@@ -35,7 +35,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </section>
   </div>
 </div>
 {% endblock%}

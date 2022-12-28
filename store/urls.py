@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from . import globalviews as views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
+from store.views import Home
 
 urlpatterns = [
-    path('', views.home, name='homepage'),
+    path('', Home.Home.as_view(), name='homepage'),
     path('signup', views.signup, name='signup'),
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
