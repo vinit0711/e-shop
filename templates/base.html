@@ -21,23 +21,20 @@
 
 <body>
   <div class="container-fluid">
-    {% include 'components/navbar.html' %}
     {% block content %}
     {% endblock %}
-
-    <!-- MDB javascript -->
-    <script src="{% static 'js/libraries/mdb.min.js' %}"></script>
-    <!-- HTMX  -->
-    <script src="{% static 'js/libraries/htmx.min.js' %}"></script>
-    <!-- Optional JavaScript -->
-    <script src="{% static 'js/script.js' %}"></script>
-    <script>
-      document.body.addEventListener('htmx:configRequest', (event) => {
-        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-      })
-    </script>
-
   </div>
+  <!-- MDB javascript -->
+  <script src="{% static 'js/libraries/mdb.min.js' %}"></script>
+  <!-- HTMX  -->
+  <script src="{% static 'js/libraries/htmx.min.js' %}"></script>
+  <!-- Optional JavaScript -->
+  <script src="{% static 'js/script.js' %}"></script>
+  <script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+      event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+  </script>
 </body>
 
 </html>

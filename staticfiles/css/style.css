@@ -9,3 +9,7 @@
   border-radius: 0.5em;
   box-shadow: 15px 22px 56px -15px rgb(107 30 30 / 65%);
 }
+.ul .li {
+  display: block;
+  padding: 10px 30px;
+}

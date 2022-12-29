@@ -1,52 +1,46 @@
 {% load cart %}
-<div id="products" class="col-lg-10 col-md-10">
-  <div class="row row-cols-1 row-cols-md-3 g-10">
-    {% for product in products %}
-    <div class="col">
-      <div class="card mx-auto mb-3 bg-light" name="product" id="{{product.id}}" style="width: 18rem">
-        <img class="card-img-top " src="{{product.image.url}}" alt="{{product.name}}" />
-        <div class="card-body">
-          <p class="card-title-card-link">{{product.name}}</p>
-
-          <p class="card-text"><b>{{product.price}}</b></p>
-          <a href="/productpage/{{product.id}}" class="btn btn-primary">More Info</a>
-        </div>
-
-        <div class="card-footer  no-gutters">
-          {% if product|is_in_cart:request.session.cart %}
-          <div class="row no-gutters">
-            <form hx-post="add_product_to_cart/{{product.id}}" hx-target="#products" hx-swap="outerHTML"
-              class="col-md-2 col-lg-2 p-0">
-              {% csrf_token %}
-              <input hidden type="text" name="product" value="{{product.id}}" />
-              <input hidden type="text" name="remove" value="True" />
-              <input type="submit" value="-" class="btn  btn-secondary " />
-            </form>
-            <p class="text-center col-md-8 col-lg-8">
-              {{product|cart_quantity:request.session.cart}} in Cart
-            </p>
-            <form hx-post="add_product_to_cart/{{product.id}}" hx-target="#products" hx-swap="outerHTML"
-              class="col-md-2 col-lg-2 p-0">
-              {% csrf_token %}
-              <input hidden type="text" name="product" value="{{product.id}}" />
-              <input type="submit" value="+" class="btn  btn-secondary " />
-            </form>
-          </div>
-          {% else %}
-          <form class="d-grid  col-8 mx-auto" hx-post="add_product_to_cart/{{product.id}}" hx-target="#products"
-            hx-swap="outerHTML">
+<div class="row row-cols-1 row-cols-md-4 g-10">
+  {% for product in page_obj %}
+  <div class="col">
+    <div class="card mx-auto mb-3 bg-light" name="product" id="{{product.id}}" style="width: 18rem">
+      <img class="card-img-top " src="{{product.image.url}}" alt="{{product.name}}" />
+      <div class="card-body">
+        <p class="card-title-card-link">{{product.name}}</p>
+        <p class="card-text"><b>{{product.price}}</b></p>
+        <a href="/productpage/{{product.id}}" class="btn btn-primary">More Info</a>
+      </div>
+      <div class="card-footer  no-gutters">
+        {% if product|is_in_cart:request.session.cart %}
+        <div class="row no-gutters">
+          <form hx-post="add_product_to_cart/{{product.id}}" hx-target="#products" hx-swap="outerHTML"
+            class="col-md-2 col-lg-2 p-0">
+            {% csrf_token %}
             <input hidden type="text" name="product" value="{{product.id}}" />
-            <input type="submit" class=" btn btn-light form-control" value="Add To Cart" />
-            <!-- <button type="submit" class="btn " value="Add To Cart">Add To Cart</button> -->
-
+            <input hidden type="text" name="remove" value="True" />
+            <input type="submit" value="-" class="btn  btn-secondary " />
           </form>
-
-          {%endif %}
+          <p class="text-center col-md-8 col-lg-8">
+            {{product|cart_quantity:request.session.cart}} in Cart
+          </p>
+          <form hx-post="add_product_to_cart/{{product.id}}" hx-target="#products" hx-swap="outerHTML"
+            class="col-md-2 col-lg-2 p-0">
+            {% csrf_token %}
+            <input hidden type="text" name="product" value="{{product.id}}" />
+            <input type="submit" value="+" class="btn  btn-secondary " />
+          </form>
         </div>
+        {% else %}
+        <form class="d-grid  col-8 mx-auto" hx-post="add_product_to_cart/{{product.id}}" hx-target="#products"
+          hx-swap="outerHTML">
+          <input hidden type="text" name="product" value="{{product.id}}" />
+          <input type="submit" class=" btn btn-light form-control" value="Add To Cart" />
+          <!-- <button type="submit" class="btn " value="Add To Cart">Add To Cart</button> -->
+        </form>
+        {% endif %}
       </div>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
 </div>
 <script type="text/javascript">
   var cart_display_quantity = "{{ cart_quantity |safe}}";

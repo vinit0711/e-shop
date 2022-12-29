@@ -1,10 +1,22 @@
 {% extends 'base.html' %} {% block content %} {% load cart %}
+{% include 'components/navbar.html' %}
 
-<div class="container mt-3 " style="margin-left:10px">
-  <div class="row">
-    {% include 'components/sidebar.html' %}
-    <!-- all products -->
-    {% include 'components/products.html' %}
+<div class="container-fluid">
+  <div class="row mt-5">
+    <!-- SIDEBAR -->
+    <div class="col-lg-2 col-md-2 ml-0">
+      {% include 'components/sidebar.html' %}
+    </div>
+    <!-- PRODUCTS-->
+    <div id="products" class="col-lg-10 col-md-10 ">
+      {% include 'components/products.html' %}
+    </div>
+  </div>
+  <!-- PAGINATION -->
+  <div class="row col-lg-2 col-md-2 mx-auto mt-2 pt-2">
+    {% include 'components/pagination.html' %}
   </div>
 </div>
+
+
 {% endblock%}
