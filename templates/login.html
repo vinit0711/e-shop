@@ -8,6 +8,7 @@
         <div class="col-lg-10 mx-auto">
           <h3 class="alert alert-light border rounded mt-4 pt-4 d-flex justify-content-center">Login Here</h3>
           <form action="/login" method="POST">
+            {% csrf_token %}
             {% for message in messages %}
             <ul class="messages">
               <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible pb-2"
