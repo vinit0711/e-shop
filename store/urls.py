@@ -4,12 +4,12 @@ from . import globalviews as views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
-from store.views import Home
+from store.views.store import Home, Login, RegisterUser
 
 urlpatterns = [
     path('', Home.Home.as_view(), name='homepage'),
-    path('signup', views.signup, name='signup'),
-    path('login', views.login, name='login'),
+    path('signup', RegisterUser.RegisterUser.as_view(), name='signup'),
+    path('login', Login.Login.as_view(), name='login'),
     path('logout', views.logout, name='logout'),
     path('cart', views.cart, name='cart'),
     path('check-out', views.checkout, name='checkout'),

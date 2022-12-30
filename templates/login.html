@@ -1,41 +1,45 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container">
-  <div class="row">
-    <section id="loginContainer" class="col-lg-5 mx-auto border rounded p-4 m-4">
-
-      <div class="col-lg-10 mx-auto">
-        <h3 class="alert alert-light border rounded mt-4 pt-4 d-flex justify-content-center">Login Here</h3>
-        <form action="/login" method="POST">
-          {%if error_message %}
-          <div class="alert alert-danger" role="alert">{{error_message}}</div>
-          {% endif %} {% csrf_token %}
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="Email" name="email" class="form-control" />
-            <label class="form-label" for="form2Example1">Email address</label>
-          </div>
-
-          <!-- Password input -->
-          <div class="form-outline mb-4">
-            <input type="password" name="password" class="form-control" />
-            <label class="form-label" for="form2Example2">Password</label>
-          </div>
-          <!-- <div class="col">
-              <a href="#!">Forgot password?</a>
-            </div> -->
-
-          <!-- Submit button -->
-          <div class="form-group form-control-sm " style="text-align: center;">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-          <!-- Register buttons -->
-          <div>
-            <p>Not a member? <a href="/signup">Register</a></p>
-          </div>
-        </form>
-      </div>
-    </section>
+<div class="container mt-10">
+  <div class="container-fluid mt-100" style="
+    margin-top: 100px">
+    <div class=" row">
+      <section id="loginContainer" class="col-lg-5 mx-auto border rounded p-4 m-4">
+        <div class="col-lg-10 mx-auto">
+          <h3 class="alert alert-light border rounded mt-4 pt-4 d-flex justify-content-center">Login Here</h3>
+          <form action="/login" method="POST">
+            {% for message in messages %}
+            <ul class="messages">
+              <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible pb-2"
+                role="alert">
+                <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+                {{ message }}
+                <p class="d-flex justify-content-center font-weight-bold">Please log in</p>
+              </div>
+            </ul>
+            {% endfor %}
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="Email" name="email" class="form-control" />
+              <label class="form-label" for="form2Example1">Email address</label>
+            </div>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input type="password" name="password" class="form-control" />
+              <label class="form-label" for="form2Example2">Password</label>
+            </div>
+            <!-- Submit button -->
+            <div class="form-group form-control-sm " style="text-align: center;">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <!-- Register buttons -->
+            <div>
+              <p>Not a member? <a href="/signup">Register</a></p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 {% endblock%}

@@ -6,6 +6,8 @@
   <div class="border rounded p-4 m-4">
     <p class="display-4 pl-4 ml-4">Your Cart</p>
     <hr>
+    {% if request.session.cart %}
+
     <table class="table">
       <thead>
         <tr>
@@ -41,11 +43,16 @@
         </tr>
       </tfoot>
     </table>
+
     <div class="m-3 p-3">
       <a href="#" data-mdb-toggle="modal" data-mdb-target="#checkoutModal"
         class="btn border rounded  col-lg-3 float-right">Check
         out</a>
     </div>
+    {% else %}
+    <p class="text-center">Cart is Empty </p>
+    {% endif %}
+
   </div>
 </div>
 <!-- modal -->

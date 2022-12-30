@@ -1,49 +1,53 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="container">
-  <div class="col-lg-4 mx-auto border rounded p-4 m-4">
-    <h3 class="alert alert-light border rounded mt-4 pt-4">Create New Account</h3>
-    <form action="/signup" method="POST">
-      {%if error_message %}
-      <div class="alert alert-danger" role="alert">{{error_message}}</div>
-      {% endif %} {% csrf_token %}
-      <div class="form-outline mb-4">
-        <input type="text" name="firstname" value="{{first_name}}" class="form-control" placeholder=""
-          aria-describedby="helpId" />
-        <label class="form-label" for="">First Name </label>
-      </div>
-
-      <div class="form-outline mb-4">
-        <input type="text" name="lastname" value="{{last_name}}" class="form-control" aria-describedby="helpId" />
-        <label class="form-label" for="">Last Name </label>
-      </div>
-
-      <div class="form-outline mb-4">
-        <input type="text" name="phonenumber" value="{{phone_number}}" class="form-control" aria-describedby="helpId" />
-        <label class="form-label" for="">Phone Number </label>
-      </div>
-
-      <div class="form-outline mb-4">
-        <input type="Email" name="email" value="{{email}}" class="form-control" aria-describedby="helpId"
-          hx-post="/check-email" hx-trigger="keyup" hx-target="#email-error" hx-swap="outerhtml" />
-        <label class="form-label" for="">Email </label>
-
-      </div>
-      <div id="email-error"></div>
-      <div class="form-outline mb-4">
-        <input type="password" name="password" value="{{password}}" class="form-control" aria-describedby="helpId" />
-        <label class="form-label" for="">Password </label>
-      </div>
-
-      <div class="row">
-        <div class="form-group form-control-sm col text-center">
-          <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="container-fluid" style="
+    margin-top: 100px">
+    <div class="col-lg-4 mx-auto border rounded p-4 m-4">
+      <h3 class="alert alert-light border rounded mt-4 pt-4">Create New Account</h3>
+      <form action="/signup" method="POST">
+        {%if error_message %}
+        <div class="alert alert-danger" role="alert">{{error_message}}</div>
+        {% endif %} {% csrf_token %}
+        <div class="form-outline mb-4">
+          <input type="text" name="firstname" value="{{first_name}}" class="form-control" placeholder=""
+            aria-describedby="helpId" />
+          <label class="form-label" for="">First Name </label>
         </div>
-        <div>
-          <p>Already a member? <a href="/login">Login</a></p>
+
+        <div class="form-outline mb-4">
+          <input type="text" name="lastname" value="{{last_name}}" class="form-control" aria-describedby="helpId" />
+          <label class="form-label" for="">Last Name </label>
         </div>
-      </div>
-    </form>
+
+        <div class="form-outline mb-4">
+          <input type="text" name="phonenumber" value="{{phone_number}}" class="form-control"
+            aria-describedby="helpId" />
+          <label class="form-label" for="">Phone Number </label>
+        </div>
+
+        <div class="form-outline mb-4">
+          <input type="Email" name="email" value="{{email}}" class="form-control" aria-describedby="helpId"
+            hx-post="/check-email" hx-trigger="keyup" hx-target="#email-error" hx-swap="outerhtml" />
+          <label class="form-label" for="">Email </label>
+
+        </div>
+        <div id="email-error"></div>
+        <div class="form-outline mb-4">
+          <input type="password" name="password" value="{{password}}" class="form-control" aria-describedby="helpId" />
+          <label class="form-label" for="">Password </label>
+        </div>
+
+        <div class="row">
+          <div class="form-group form-control-sm col text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          <div>
+            <p>Already a member? <a href="/login">Login</a></p>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
