@@ -28,7 +28,7 @@ class Home(View):
             products = Product.get_all_product_by_categoryid(categoryid)
         else:
             products = Product.get_all_products()
-        paginator = Paginator(products, 4)
+        paginator = Paginator(products, 2)
         try:
             page_obj = paginator.page(page)
         except PageNotAnInteger:

@@ -40,8 +40,20 @@
       </div>
     </div>
   </div>
+  {% empty %}
+
   {% endfor %}
 </div>
+{% if page_obj %}
+<!-- PAGINATION -->
+<div class="row col-lg-2 col-md-2 mx-auto mt-2 pt-2">
+  {% include 'components/pagination.html' %}
+</div>
+{%else%}
+<div class="col">
+  <p class="font-weight-bold text-center">Sorry, No Products in this Category.</p>
+</div>
+{% endif %}
 <script type="text/javascript">
   var cart_display_quantity = "{{ cart_quantity |safe}}";
   console.log("cart_display_quantity=", cart_display_quantity)
